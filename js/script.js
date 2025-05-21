@@ -106,6 +106,9 @@ const animes = [
 function displayFeaturedAnime() {
   const featuredAnime = animes.find((anime) => anime.featured);
   if (featuredAnime) {
+    const hero = document.querySelector(".hero");
+    hero.classList.add("loading");
+
     document.querySelector(".featured-title").textContent = featuredAnime.title;
     document.querySelector(".featured-description").textContent =
       featuredAnime.description;
@@ -113,15 +116,22 @@ function displayFeaturedAnime() {
     // Pré-carrega a imagem de hero antes de exibi-la
     const img = new Image();
     img.onload = function () {
-      document
-        .querySelector(".hero")
-        .style.setProperty("--hero-image", `url('${featuredAnime.heroImage}')`);
-      document.querySelector(".hero").style.background = `
+      hero.style.setProperty(
+        "--hero-image",
+        `url('${featuredAnime.heroImage}')`
+      );
+      hero.style.background = `
                 linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.6)),
                 var(--hero-image)
             `;
-      document.querySelector(".hero").style.backgroundSize = "cover";
-      document.querySelector(".hero").style.backgroundPosition = "center 20%";
+      hero.style.backgroundSize = "cover";
+      hero.style.backgroundPosition = "center 20%";
+
+      // Remove classe de loading e adiciona classe loaded após um breve delay
+      setTimeout(() => {
+        hero.classList.remove("loading");
+        hero.classList.add("loaded");
+      }, 100);
     };
     img.src = featuredAnime.heroImage;
   }
@@ -137,7 +147,11 @@ function createAnimeCards() {
     card.className = "anime-card";
     card.innerHTML = `
             <img src="${anime.cardImage}" alt="${anime.title}" />
-            <h3>${anime.title}</h3>
+            <div class="card-overlay">
+                <h3>${anime.title}</h3>
+                <p>${anime.description.slice(0, 100)}...</p>
+                <button>Ver Detalhes</button>
+            </div>
         `;
 
     card.addEventListener("click", () => {
