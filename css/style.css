@@ -1,0 +1,694 @@
+:root {
+    --primary-color: #ff0040;
+    --secondary-color: #4b0082;
+    --accent-color: #00f7ff;
+    --background-color: #141414;
+    --text-color: #ffffff;
+    --pixel-border: 4px;
+    --gradient-1: linear-gradient(45deg, var(--primary-color), var(--secondary-color));
+}
+
+/* Reset básico */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+/* Tipografia e cores */
+body {
+    font-family: Arial, sans-serif;
+    background-color: var(--background-color);
+    color: var(--text-color);
+    line-height: 1.6;
+}
+
+a {
+    text-decoration: none;
+    color: inherit;
+}
+
+/* Cabeçalho */
+.header {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    padding: 1rem;
+    background: linear-gradient(to bottom, rgba(0, 0, 0, 0.9) 0%, rgba(0, 0, 0, 0.7) 50%, transparent 100%);
+    z-index: 1000;
+    -webkit-backdrop-filter: blur(5px);
+    backdrop-filter: blur(5px);
+    border-bottom: 2px solid rgba(255, 255, 255, 0.1);
+}
+
+.nav-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 2rem;
+}
+
+.logo {
+    font-family: 'Press Start 2P', monospace;
+    font-size: 1.8rem;
+    position: relative;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    background: var(--gradient-1);
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    text-shadow: 3px 3px 0px rgba(0, 0, 0, 0.8);
+    animation: textGlow 2s ease-in-out infinite alternate;
+}
+
+/* Conteúdo principal */
+.main-content {
+    padding: 2rem;
+    text-align: center;
+}
+
+.hero {
+    --hero-image: none;
+    height: 90vh;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    align-items: flex-end;
+    /* Mudando para alinhar na parte inferior */
+    padding-bottom: 15vh;
+    /* Espaço na parte inferior */
+    background-size: cover;
+    background-position: center 20%;
+    transition: all 0.5s ease-in-out;
+}
+
+.hero::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(180deg,
+            rgba(0, 0, 0, 0.5) 0%,
+            /* Reduzido de 0.8 para 0.5 */
+            rgba(0, 0, 0, 0.3) 50%,
+            /* Reduzido de 0.4 para 0.3 */
+            rgba(0, 0, 0, 0.7) 100%);
+    /* Reduzido de 0.9 para 0.7 */
+    z-index: 1;
+}
+
+.hero::after {
+    content: '';
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    height: 200px;
+    background: linear-gradient(to top, var(--background-color), transparent);
+    z-index: 2;
+}
+
+.particles {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 1;
+    overflow: hidden;
+}
+
+.particle {
+    position: absolute;
+    width: 4px;
+    height: 4px;
+    background: var(--accent-color);
+    border-radius: 50%;
+    opacity: 0.3;
+    animation: float linear infinite;
+    filter: blur(1px);
+}
+
+@keyframes float {
+    0% {
+        transform: translateY(100vh) scale(0);
+        opacity: 0.3;
+    }
+
+    100% {
+        transform: translateY(-100px) scale(1);
+        opacity: 0;
+    }
+}
+
+.hero-content {
+    position: relative;
+    z-index: 3;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 1.5rem;
+    text-align: left;
+    animation: slideUp 0.8s ease-out forwards;
+    background: linear-gradient(to right, rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.05));
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 8px;
+    box-shadow:
+        0 8px 32px rgba(0, 0, 0, 0.15),
+        inset 0 0 32px rgba(0, 0, 0, 0.05);
+    -webkit-backdrop-filter: blur(2px);
+    backdrop-filter: blur(2px);
+}
+
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(50px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.featured-title {
+    font-family: 'Press Start 2P', monospace;
+    font-size: 1.6rem;
+    margin-bottom: 1.2rem;
+    position: relative;
+    display: inline-block;
+    color: var(--text-color);
+    text-transform: uppercase;
+    padding: 0.7rem 1.5rem;
+    background: rgba(0, 0, 0, 0.8);
+    border: 2px solid var(--primary-color);
+    text-shadow:
+        2px 2px 0 var(--primary-color),
+        -2px -2px 0 rgba(0, 0, 0, 0.8),
+        0 0 15px var(--primary-color);
+    letter-spacing: 2px;
+    transform: skew(-5deg);
+    box-shadow:
+        0 0 10px rgba(0, 0, 0, 0.5),
+        0 0 20px rgba(255, 0, 64, 0.3);
+    animation: titleGlow 2s ease-in-out infinite;
+}
+
+.featured-title::before,
+.featured-title::after {
+    content: '';
+    position: absolute;
+    width: 15px;
+    height: 15px;
+    border: 2px solid var(--primary-color);
+    transition: all 0.3s ease;
+}
+
+.featured-title::before {
+    top: -2px;
+    left: -2px;
+    border-right: none;
+    border-bottom: none;
+}
+
+.featured-title::after {
+    bottom: -2px;
+    right: -2px;
+    border-left: none;
+    border-top: none;
+}
+
+@keyframes titleGlow {
+
+    0%,
+    100% {
+        text-shadow:
+            2px 2px 0 var(--primary-color),
+            -2px -2px 0 rgba(0, 0, 0, 0.8),
+            0 0 15px var(--primary-color);
+        box-shadow:
+            0 0 10px rgba(0, 0, 0, 0.5),
+            0 0 20px rgba(255, 0, 64, 0.3);
+        transform: skew(-5deg) translateY(0);
+    }
+
+    50% {
+        text-shadow:
+            2px 2px 0 var(--primary-color),
+            -2px -2px 0 rgba(0, 0, 0, 0.8),
+            0 0 25px var(--primary-color),
+            0 0 35px var(--accent-color);
+        box-shadow:
+            0 0 15px rgba(0, 0, 0, 0.6),
+            0 0 30px rgba(255, 0, 64, 0.4);
+        transform: skew(-5deg) translateY(-2px);
+    }
+}
+
+.featured-description {
+    font-size: 1rem;
+    max-width: 500px;
+    line-height: 1.6;
+    margin-bottom: 2rem;
+    padding: 1.2rem;
+    background: rgba(0, 0, 0, 0.1);
+    border-left: 4px solid var(--primary-color);
+    -webkit-backdrop-filter: blur(1px);
+    backdrop-filter: blur(1px);
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.9);
+    font-weight: 500;
+}
+
+.featured-buttons {
+    display: flex;
+    gap: 1.5rem;
+    margin-top: 2rem;
+}
+
+.btn-play,
+.btn-info {
+    font-family: 'Press Start 2P', monospace;
+    padding: 1rem 2rem;
+    border: none;
+    font-size: 0.9rem;
+    cursor: pointer;
+    position: relative;
+    transition: transform 0.2s steps(5);
+    text-transform: uppercase;
+}
+
+.btn-play {
+    background: var(--gradient-1);
+    color: var(--text-color);
+    box-shadow:
+        0 0 0 4px rgba(0, 0, 0, 0.8),
+        0 0 20px rgba(255, 0, 64, 0.4);
+}
+
+.btn-info {
+    background: rgba(255, 255, 255, 0.1);
+    color: var(--text-color);
+    -webkit-backdrop-filter: blur(5px);
+    backdrop-filter: blur(5px);
+    border: 2px solid rgba(255, 255, 255, 0.2);
+}
+
+.btn-play:hover,
+.btn-info:hover {
+    transform: translateY(-4px);
+}
+
+.anime-list {
+    position: relative;
+    max-width: 1400px;
+    margin: 0 auto;
+    padding: 4rem 2rem;
+}
+
+.section-title {
+    font-family: 'Press Start 2P', monospace;
+    font-size: 1.8rem;
+    margin-bottom: 3rem;
+    text-align: center;
+    position: relative;
+    text-transform: uppercase;
+}
+
+.section-title::before {
+    content: '[ ';
+    color: var(--accent-color);
+}
+
+.section-title::after {
+    content: ' ]';
+    color: var(--accent-color);
+}
+
+/* Grade de animes */
+.anime-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+    gap: 2rem;
+    padding: 1rem;
+}
+
+.anime-card {
+    position: relative;
+    border-radius: 12px;
+    overflow: hidden;
+    transition: all 0.3s ease;
+    background: rgba(0, 0, 0, 0.5);
+    box-shadow:
+        0 0 0 2px rgba(255, 255, 255, 0.1),
+        0 10px 20px rgba(0, 0, 0, 0.3);
+}
+
+.anime-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: var(--gradient-1);
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    z-index: 1;
+}
+
+.anime-card:hover::before {
+    opacity: 0.3;
+}
+
+.anime-card::after {
+    content: '';
+    position: absolute;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: linear-gradient(45deg,
+            transparent,
+            rgba(255, 255, 255, 0.1),
+            transparent);
+    transform: rotate(45deg);
+    transition: 0.5s;
+    opacity: 0;
+}
+
+.anime-card:hover::after {
+    opacity: 1;
+    transform: rotate(45deg) translate(50%, 50%);
+}
+
+.anime-card img {
+    width: 100%;
+    height: 350px;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.anime-card:hover {
+    transform: translateY(-10px) scale(1.02);
+    box-shadow:
+        0 0 0 2px var(--primary-color),
+        0 20px 30px rgba(0, 0, 0, 0.4);
+}
+
+.anime-card:hover img {
+    transform: scale(1.1);
+}
+
+.anime-card h3 {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    padding: 1.5rem 1rem;
+    background: linear-gradient(transparent, rgba(0, 0, 0, 0.9));
+    font-family: 'Press Start 2P', monospace;
+    font-size: 1rem;
+    text-align: center;
+    z-index: 2;
+}
+
+/* Rodapé */
+.footer {
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.95), rgba(0, 0, 0, 0.8));
+    padding: 2rem 1rem;
+    text-align: center;
+    border-top: 2px solid var(--primary-color);
+    position: relative;
+    z-index: 10;
+    -webkit-backdrop-filter: blur(5px);
+    backdrop-filter: blur(5px);
+    font-family: 'Press Start 2P', monospace;
+    font-size: 0.8rem;
+    color: rgba(255, 255, 255, 0.9);
+    text-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
+    box-shadow: 0 -10px 20px rgba(0, 0, 0, 0.3);
+}
+
+.footer::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 1px;
+    background: linear-gradient(to right,
+            transparent,
+            var(--accent-color),
+            transparent);
+    opacity: 0.3;
+}
+
+/* Estilos para ícones pixel art */
+.pixel-icon {
+    width: 24px;
+    height: 24px;
+    image-rendering: pixelated;
+    vertical-align: middle;
+    margin-right: 8px;
+    filter:
+        drop-shadow(2px 2px 0 #000) brightness(0) saturate(100%) invert(100%) sepia(0%);
+    transition: filter 0.3s steps(3);
+}
+
+.nav-item {
+    display: flex;
+    align-items: center;
+    padding: 8px 16px;
+    margin: 0 8px;
+    border: 2px solid transparent;
+    transition: all 0.3s steps(3);
+}
+
+.nav-item:hover,
+.nav-item.active {
+    border-color: var(--primary-color);
+    transform: scale(1.1);
+}
+
+.nav-item:hover .pixel-icon,
+.nav-item.active .pixel-icon {
+    filter:
+        drop-shadow(2px 2px 0 #000) brightness(0) saturate(100%) invert(11%) sepia(100%) saturate(5983%) hue-rotate(345deg) brightness(95%) contrast(119%);
+    animation: bounce 0.5s steps(5) infinite;
+}
+
+.btn-play .pixel-icon,
+.btn-info .pixel-icon {
+    width: 20px;
+    height: 20px;
+    margin-right: 8px;
+    animation: pulse 2s steps(4) infinite;
+}
+
+@keyframes titlePulse {
+
+    0%,
+    100% {
+        transform: scale(1);
+        text-shadow: 3px 3px 0 #000, -3px -3px 0 var(--primary-color);
+    }
+
+    50% {
+        transform: scale(1.02);
+        text-shadow: 4px 4px 0 #000, -4px -4px 0 var(--primary-color);
+    }
+}
+
+@keyframes textGlow {
+    0% {
+        filter: drop-shadow(0 0 5px var(--primary-color));
+    }
+
+    100% {
+        filter: drop-shadow(0 0 15px var(--primary-color));
+    }
+}
+
+@keyframes bounce {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-4px);
+    }
+}
+
+@keyframes pulse {
+
+    0%,
+    100% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.2);
+    }
+}
+
+/* Responsividade */
+@media screen and (max-width: 768px) {
+    .header {
+        padding: 0.5rem;
+    }
+
+    .nav-container {
+        padding: 0 1rem;
+    }
+
+    .logo {
+        font-size: 1.2rem;
+    }
+
+    .nav-item {
+        padding: 6px 12px;
+        margin: 0 4px;
+    }
+
+    .hero {
+        height: 80vh;
+        padding-bottom: 10vh;
+    }
+
+    .hero-content {
+        padding: 1.5rem;
+        margin: 0 1rem;
+    }
+
+    .featured-title {
+        font-size: 1.2rem;
+        padding: 0.5rem 1rem;
+    }
+
+    .featured-description {
+        font-size: 0.9rem;
+        padding: 1rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .featured-buttons {
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    .btn-play,
+    .btn-info {
+        width: 100%;
+        padding: 0.8rem 1.5rem;
+        font-size: 0.8rem;
+    }
+
+    .section-title {
+        font-size: 1.4rem;
+        margin-bottom: 2rem;
+    }
+
+    .anime-grid {
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+        gap: 1rem;
+        padding: 0.5rem;
+    }
+
+    .anime-card img {
+        height: 280px;
+    }
+
+    .anime-card h3 {
+        font-size: 0.8rem;
+        padding: 1rem 0.5rem;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    .nav-container {
+        flex-direction: column;
+        gap: 1rem;
+    }
+
+    .nav-links {
+        width: 100%;
+        justify-content: center;
+    }
+
+    .hero {
+        height: 70vh;
+    }
+
+    .featured-title {
+        font-size: 1rem;
+        padding: 0.4rem 0.8rem;
+    }
+
+    .featured-description {
+        font-size: 0.8rem;
+        line-height: 1.6;
+    }
+
+    .anime-grid {
+        grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    }
+
+    .anime-card img {
+        height: 220px;
+    }
+
+    .anime-card h3 {
+        font-size: 0.7rem;
+    }
+
+    .main-content {
+        padding: 1rem;
+    }
+
+    .anime-list {
+        padding: 2rem 1rem;
+    }
+
+    .footer {
+        padding: 1.5rem 1rem;
+        font-size: 0.6rem;
+        line-height: 1.5;
+    }
+}
+
+@media screen and (min-width: 1400px) {
+    .hero-content {
+        max-width: 1400px;
+        padding: 3rem;
+    }
+
+    .featured-description {
+        max-width: 800px;
+        font-size: 1.2rem;
+    }
+
+    .featured-title {
+        font-size: 2rem;
+    }
+
+    .btn-play,
+    .btn-info {
+        padding: 1.2rem 2.5rem;
+        font-size: 1rem;
+    }
+
+    .anime-grid {
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    }
+
+    .anime-card img {
+        height: 400px;
+    }
+}

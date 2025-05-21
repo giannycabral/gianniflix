@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>GianniFlix</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css" />
+</head>
+
+<body>
+    <header class="header">
+        <nav class="nav-container">
+            <h1 class="logo">Gianni<span>Flix</span></h1>
+            <div class="nav-links">
+                <a href="#home" class="active nav-item">
+                    <img src="images/icons/home.png" alt="Home" class="pixel-icon">
+                    Início
+                </a>
+                <a href="#animes" class="nav-item">
+                    <img src="images/icons/tv.png" alt="Animes" class="pixel-icon">
+                    Animes
+                </a>
+            </div>
+        </nav>
+    </header>
+
+    <main class="main-content">
+        <section class="hero" id="home">
+            <div class="hero-content">
+                <h2 class="featured-title">Anime em Destaque</h2>
+                <p class="featured-description">Descrição do anime em destaque aparecerá aqui...</p>
+                <div class="featured-buttons">
+                    <button class="btn-play">
+                        <img src="images/icons/play.png" alt="Play" class="pixel-icon">
+                        Assistir
+                    </button>
+                    <button class="btn-info">
+                        <img src="images/icons/info.png" alt="Info" class="pixel-icon">
+                        Mais Informações
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <section class="anime-list" id="animes">
+            <h2 class="section-title">Meus Animes Favoritos</h2>
+            <div class="anime-grid">
+                <!-- Os cards serão preenchidos via JavaScript -->
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <p>&copy; 2025 GianniFlix. Todos os direitos reservados.</p>
+    </footer>
+
+    <script src="js/particles.js"></script>
+    <script src="js/script.js"></script>
+</body>
+
+</html>
